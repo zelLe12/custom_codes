@@ -58,12 +58,19 @@
               z-index: 1;
               cursor: pointer;
               font-size: 18px;
+              transform: translateX(-15px);
+              padding: 0 15px;
+              transition: all .3s ease;
             }
             .gfbox-expand:after {
               content: "\00BB";
               font-weight: 900;
               color: #92278F;
               margin-left: 10px;
+            }
+            .gfbox-expand:hover {
+              background: #fff;
+              color: #92278F;
             }
             .gfbox-desc {
               opacity: 0;
@@ -110,7 +117,10 @@
               transform: translate(-15px, -15px);
               transition: opacity .3s ease;
             }
-            
+            .gridflex-box {
+              background-position: center;
+              background-size: cover;
+            }
             .gridflex-box.active {
               height: 120%;
             }
@@ -141,102 +151,102 @@
     </head>
     <body>
         <div class="wrapper">
-            <div class="gridflex-boxes">
-                <div class="gridflex-col">
-                    <div class="gridflex-box"
-                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://lakelandhillsymca.com/wp-content/uploads/sites/18/2024/10/AdobeStock_658117523-1024x574.jpeg)">
-                        <div class="gfbox-content">
-                            <h3>Box 1</h3>
-                            <span class="gfbox-expand">Details</span>
-                            <div class="gfbox-desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
-                                numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
-                                quo.
-                            </div>
-            
-                            <a href="#" class="gfbox-cta">Get Started</a>
-                            <span class="gfbox-price">$00/mo</span>
-                        </div>
-                    </div>
-                    <div class="gridflex-box"
-                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://lakelandhillsymca.com/wp-content/uploads/sites/18/2024/10/Young-Adult-Membership-1024x683.jpg)">
-                        <div class="gfbox-content">
-                            <h3>Box 2</h3>
-                            <span class="gfbox-expand">Details</span>
-                            <div class="gfbox-desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
-                                numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
-                                quo.
-                            </div>
-            
-                            <a href="#" class="gfbox-cta">Get Started</a>
-                            <span class="gfbox-price">$00/mo</span>
-                        </div>
-                    </div>
-                    <div class="gridflex-box"
-                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://lakelandhillsymca.com/wp-content/uploads/sites/18/2024/10/After-School-Childcare-at-the-Y-1024x683.jpg)">
-                        <div class="gfbox-content">
-                            <h3>Box 3</h3>
-                            <span class="gfbox-expand">Details</span>
-                            <div class="gfbox-desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
-                                numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
-                                quo.
-                            </div>
-            
-                            <a href="#" class="gfbox-cta">Get Started</a>
-                            <span class="gfbox-price">$00/mo</span>
-                        </div>
-                    </div>
+          <div class="gridflex-boxes">
+            <div class="gridflex-col">
+              <div class="gridflex-box"
+                   style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://as2.ftcdn.net/v2/jpg/02/97/95/57/1000_F_297955703_BCMiaghvj8PYnqkweZXDvlnyfRYFzjS1.jpg)">
+                <div class="gfbox-content">
+                  <h3>Box 1</h3>
+                  <span class="gfbox-expand">Details</span>
+                  <div class="gfbox-desc">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
+                    numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
+                    quo.
+                  </div>
+        
+                  <a href="#" class="gfbox-cta">Get Started</a>
+                  <span class="gfbox-price">$00/mo</span>
                 </div>
-                <div class="gridflex-col">
-                    <div class="gridflex-box"
-                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://lakelandhillsymca.com/wp-content/uploads/sites/18/2024/10/Health-and-Wellness-at-the-Y-Box-2.jpg)">
-                        <div class="gfbox-content">
-                            <h3>Box 4</h3>
-                            <span class="gfbox-expand">Details</span>
-                            <div class="gfbox-desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
-                                numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
-                                quo.
-                            </div>
-            
-                            <a href="#" class="gfbox-cta">Get Started</a>
-                            <span class="gfbox-price">$00/mo</span>
-                        </div>
-                    </div>
-                    <div class="gridflex-box"
-                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://lakelandhillsymca.com/wp-content/uploads/sites/18/2024/10/Y-Teen-Membership-1024x684.jpg)">
-                        <div class="gfbox-content">
-                            <h3>Box 5</h3>
-                            <span class="gfbox-expand">Details</span>
-                            <div class="gfbox-desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
-                                numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
-                                quo.
-                            </div>
-            
-                            <a href="#" class="gfbox-cta">Get Started</a>
-                            <span class="gfbox-price">$00/mo</span>
-                        </div>
-                    </div>
-                    <div class="gridflex-box"
-                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://lakelandhillsymca.com/wp-content/uploads/sites/18/2024/10/Older-Adult-Membership-1024x684.jpg)">
-                        <div class="gfbox-content">
-                            <h3>Box 6</h3>
-                            <span class="gfbox-expand">Details</span>
-                            <div class="gfbox-desc">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
-                                numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
-                                quo.
-                            </div>
-            
-                            <a href="#" class="gfbox-cta">Get Started</a>
-                            <span class="gfbox-price">$00/mo</span>
-                        </div>
-                    </div>
+              </div>
+              <div class="gridflex-box"
+                   style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://as2.ftcdn.net/v2/jpg/01/01/53/41/1000_F_101534150_zIHvU73rOpxsOfnYhZLheUeSJ2EIyxEn.jpg)">
+                <div class="gfbox-content">
+                  <h3>Box 2</h3>
+                  <span class="gfbox-expand">Details</span>
+                  <div class="gfbox-desc">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
+                    numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
+                    quo.
+                  </div>
+        
+                  <a href="#" class="gfbox-cta">Get Started</a>
+                  <span class="gfbox-price">$00/mo</span>
                 </div>
+              </div>
+              <div class="gridflex-box"
+                   style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://as2.ftcdn.net/v2/jpg/02/52/76/45/1000_F_252764540_lxAdZvCM0gMik4aqR6sc7of6ukcjEwIq.jpg)">
+                <div class="gfbox-content">
+                  <h3>Box 3</h3>
+                  <span class="gfbox-expand">Details</span>
+                  <div class="gfbox-desc">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
+                    numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
+                    quo.
+                  </div>
+        
+                  <a href="#" class="gfbox-cta">Get Started</a>
+                  <span class="gfbox-price">$00/mo</span>
+                </div>
+              </div>
             </div>
+            <div class="gridflex-col">
+              <div class="gridflex-box"
+                   style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://as1.ftcdn.net/v2/jpg/02/77/69/54/1000_F_277695485_UNs9SiGqJg4zchsXLvtxFhnaQtMo4A6P.jpg)">
+                <div class="gfbox-content">
+                  <h3>Box 4</h3>
+                  <span class="gfbox-expand">Details</span>
+                  <div class="gfbox-desc">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
+                    numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
+                    quo.
+                  </div>
+        
+                  <a href="#" class="gfbox-cta">Get Started</a>
+                  <span class="gfbox-price">$00/mo</span>
+                </div>
+              </div>
+              <div class="gridflex-box"
+                   style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://as1.ftcdn.net/v2/jpg/03/85/53/84/1000_F_385538402_xMnBeerYFUYaN1fUjtFjLv3fdfNqNjhA.jpg)">
+                <div class="gfbox-content">
+                  <h3>Box 5</h3>
+                  <span class="gfbox-expand">Details</span>
+                  <div class="gfbox-desc">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
+                    numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
+                    quo.
+                  </div>
+        
+                  <a href="#" class="gfbox-cta">Get Started</a>
+                  <span class="gfbox-price">$00/mo</span>
+                </div>
+              </div>
+              <div class="gridflex-box"
+                   style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://as1.ftcdn.net/v2/jpg/02/70/18/90/1000_F_270189035_HeAyGA6NhAhQ2SglPNdvTFzl06Mrx7F5.jpg)">
+                <div class="gfbox-content">
+                  <h3>Box 6</h3>
+                  <span class="gfbox-expand">Details</span>
+                  <div class="gfbox-desc">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
+                    numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
+                    quo.
+                  </div>
+        
+                  <a href="#" class="gfbox-cta">Get Started</a>
+                  <span class="gfbox-price">$00/mo</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <script>
