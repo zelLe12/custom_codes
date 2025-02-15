@@ -1,143 +1,141 @@
 <html>
     <head>
         <title>Expandable Boxes | zelLe12</title>
-        <script src="https://kit.fontawesome.com/cfb889ef6e.js" crossorigin="anonymous"></script>
         <style>
             div {
-                box-sizing: border-box;
-                position: relative;
+              box-sizing: border-box;
+              position: relative;
             }
             h1,h2,h3 {
-                margin: 0;
+              margin: 0;
             }
             .wrapper {
-                width: 100%;
-                max-width: 800px;
+              width: 100%;
+              max-width: 800px;
             }
             .gridflex-boxes {
-                display: flex;
-                flex-wrap: wrap;
-                flex-direction: row;
-                height: 560px;
-                max-height: 560px;
+              display: flex;
+              flex-wrap: wrap;
+              flex-direction: row;
+              height: 560px;
+              max-height: 560px;
             }
             .gridflex-col {
-                width: 50%;
-                height: 100%;
-                display: flex;
-                flex-wrap: nowrap;
-                flex-direction: column;
-                align-self: stretch;
+              width: 50%;
+              height: 100%;
+              display: flex;
+              flex-wrap: nowrap;
+              flex-direction: column;
+              align-self: stretch;
             }
             .gridflex-box {
-                height: 33.3333%;
-                overflow: hidden;
-                margin: 10px 10px;
-                background-position: center top;
-                background-repeat: no-repeat;
-                background-size: cover;
-                border-radius: 12px;
-                transition: all .3s ease-out;
+              height: 33.3333%;
+              overflow: hidden;
+              margin: 10px 10px;
+              background-position: center top;
+              background-repeat: no-repeat;
+              background-size: cover;
+              border-radius: 12px;
+              transition: all .3s ease-out;
             }
             .gfbox-content {
-                position: relative;
-                height: 100%;
-                width: 100%;
-                padding: 15px;
-                color: #fff;
+              position: relative;
+              height: 100%;
+              width: 100%;
+              padding: 15px;
+              color: #fff;
             }
             .gfbox-content h3 {
-                font-family: "Cachet Medium" !important;
-                margin: 0px;
-                font-size: 24px !important;
-                color: #fff !important;
-                line-height: 1.3 !important;
+              font-family: "Cachet Medium" !important;
+              margin: 0px;
+              font-size: 24px !important;
+              color: #fff !important;
+              line-height: 1.3 !important;
             }
             .gfbox-expand {
-                position: relative;
-                display: inline-block;
-                z-index: 1;
-                cursor: pointer;
-                font-size: 18px;
+              position: relative;
+              display: inline-block;
+              z-index: 1;
+              cursor: pointer;
+              font-size: 18px;
             }
             .gfbox-expand:after {
-                content: "\f101";
-                font-family: "Font Awesome 5 Free";
-                font-weight: 900;
-                color: #92278F;
-                margin-left: 10px;
+              content: "\00BB";
+              font-weight: 900;
+              color: #92278F;
+              margin-left: 10px;
             }
             .gfbox-desc {
-                opacity: 0;
-                height: 0;
-                font-size: 15px;
-                transition: opacity .3s ease-out;
+              opacity: 0;
+              height: 0;
+              font-size: 15px;
+              transition: opacity .3s ease-out;
             }
             .gfbox-desc::-webkit-scrollbar {
-                width: 8px;
+              width: 8px;
             }
             .gfbox-desc::-webkit-scrollbar-thumb {
-                background-color: #a573a1;
-                border-radius: 16px;
+              background-color: #a573a1;
+              border-radius: 16px;
             }
             .gfbox-desc::-webkit-scrollbar-button {
-                display:none
+              display:none
             }
             .gfbox-cta {
-                display: block;
-                position: absolute;
-                width: 160px;
-                text-align: center;
-                bottom: 0;
-                left: 0;
-                transform: translate(15px, -15px);
-                font-family: 'Cachet Medium';
-                line-height: 1;
-                background: #fff;
-                color: #92278F;
-                padding: 8px 16px;
-                border-radius: 25px;
-                opacity: 0;
-                transition: opacity .3s ease;
+              display: block;
+              position: absolute;
+              width: 160px;
+              text-align: center;
+              bottom: 0;
+              left: 0;
+              transform: translate(15px, -15px);
+              font-family: 'Cachet Medium';
+              line-height: 1;
+              background: #fff;
+              color: #92278F;
+              padding: 8px 16px;
+              border-radius: 25px;
+              opacity: 0;
+              transition: opacity .3s ease;
             }
             .gfbox-price {
-                font-size: 32px;
-                color: #ffffff;
-                font-family: "Cachet Medium";
-                display: block;
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                opacity: 1;
-                transform: translate(-15px, -15px);
-                transition: opacity .3s ease;
+              font-size: 32px;
+              color: #ffffff;
+              font-family: "Cachet Medium";
+              display: block;
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              opacity: 1;
+              transform: translate(-15px, -15px);
+              transition: opacity .3s ease;
             }
-
+            
             .gridflex-box.active {
-                height: 120%;
+              height: 120%;
             }
             .gridflex-box.active .gfbox-content {
-                background: #92278FE5;
+              background: #92278FE5;
             }
             .gridflex-box.active .gfbox-expand i {
-                color: #fff;
+              color: #fff;
             }
             .gridflex-box.active .gfbox-desc {
-                height: 52%;
-                overflow-y: auto;
-                opacity: 1;
-                margin-top: 10px;
-                animation: hide-scroll .3s backwards;
+              height: 52%;
+              overflow-y: auto;
+              opacity: 1;
+              margin-top: 10px;
+              animation: hide-scroll .3s backwards;
             }
             .gridflex-box.active .gfbox-cta {
-                opacity: 1;
+              opacity: 1;
             }
             .gridflex-box.active .gfbox-price {
-                opacity: 0;
+              opacity: 0;
             }
-
+            
             @keyframes hide-scroll {
-                from, to { overflow: hidden; } 
+              from, to { overflow: hidden; } 
             }
         </style>
     </head>
