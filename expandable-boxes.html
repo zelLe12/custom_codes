@@ -1,0 +1,275 @@
+<html>
+    <head>
+        <title>Expandable Boxes | zelLe12</title>
+        <script src="https://kit.fontawesome.com/cfb889ef6e.js" crossorigin="anonymous"></script>
+        <style>
+            div {
+                box-sizing: border-box;
+                position: relative;
+            }
+            h1,h2,h3 {
+                margin: 0;
+            }
+            .wrapper {
+                width: 100%;
+                max-width: 800px;
+            }
+            .gridflex-boxes {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row;
+                height: 560px;
+                max-height: 560px;
+            }
+            .gridflex-col {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                flex-wrap: nowrap;
+                flex-direction: column;
+                align-self: stretch;
+            }
+            .gridflex-box {
+                height: 33.3333%;
+                overflow: hidden;
+                margin: 10px 10px;
+                background-position: center top;
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 12px;
+                transition: all .3s ease-out;
+            }
+            .gfbox-content {
+                position: relative;
+                height: 100%;
+                width: 100%;
+                padding: 15px;
+                color: #fff;
+            }
+            .gfbox-content h3 {
+                font-family: "Cachet Medium" !important;
+                margin: 0px;
+                font-size: 24px !important;
+                color: #fff !important;
+                line-height: 1.3 !important;
+            }
+            .gfbox-expand {
+                position: relative;
+                display: inline-block;
+                z-index: 1;
+                cursor: pointer;
+                font-size: 18px;
+            }
+            .gfbox-expand:after {
+                content: "\f101";
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                color: #92278F;
+                margin-left: 10px;
+            }
+            .gfbox-desc {
+                opacity: 0;
+                height: 0;
+                font-size: 15px;
+                transition: opacity .3s ease-out;
+            }
+            .gfbox-desc::-webkit-scrollbar {
+                width: 8px;
+            }
+            .gfbox-desc::-webkit-scrollbar-thumb {
+                background-color: #a573a1;
+                border-radius: 16px;
+            }
+            .gfbox-desc::-webkit-scrollbar-button {
+                display:none
+            }
+            .gfbox-cta {
+                display: block;
+                position: absolute;
+                width: 160px;
+                text-align: center;
+                bottom: 0;
+                left: 0;
+                transform: translate(15px, -15px);
+                font-family: 'Cachet Medium';
+                line-height: 1;
+                background: #fff;
+                color: #92278F;
+                padding: 8px 16px;
+                border-radius: 25px;
+                opacity: 0;
+                transition: opacity .3s ease;
+            }
+            .gfbox-price {
+                font-size: 32px;
+                color: #ffffff;
+                font-family: "Cachet Medium";
+                display: block;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                opacity: 1;
+                transform: translate(-15px, -15px);
+                transition: opacity .3s ease;
+            }
+
+            .gridflex-box.active {
+                height: 120%;
+            }
+            .gridflex-box.active .gfbox-content {
+                background: #92278FE5;
+            }
+            .gridflex-box.active .gfbox-expand i {
+                color: #fff;
+            }
+            .gridflex-box.active .gfbox-desc {
+                height: 52%;
+                overflow-y: auto;
+                opacity: 1;
+                margin-top: 10px;
+                animation: hide-scroll .3s backwards;
+            }
+            .gridflex-box.active .gfbox-cta {
+                opacity: 1;
+            }
+            .gridflex-box.active .gfbox-price {
+                opacity: 0;
+            }
+
+            @keyframes hide-scroll {
+                from, to { overflow: hidden; } 
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="gridflex-boxes">
+                <div class="gridflex-col">
+                    <div class="gridflex-box"
+                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://lakelandhillsymca.com/wp-content/uploads/sites/18/2024/10/AdobeStock_658117523-1024x574.jpeg)">
+                        <div class="gfbox-content">
+                            <h3>Box 1</h3>
+                            <span class="gfbox-expand">Details</span>
+                            <div class="gfbox-desc">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
+                                numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
+                                quo.
+                            </div>
+            
+                            <a href="#" class="gfbox-cta">Get Started</a>
+                            <span class="gfbox-price">$00/mo</span>
+                        </div>
+                    </div>
+                    <div class="gridflex-box"
+                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://lakelandhillsymca.com/wp-content/uploads/sites/18/2024/10/Young-Adult-Membership-1024x683.jpg)">
+                        <div class="gfbox-content">
+                            <h3>Box 2</h3>
+                            <span class="gfbox-expand">Details</span>
+                            <div class="gfbox-desc">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
+                                numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
+                                quo.
+                            </div>
+            
+                            <a href="#" class="gfbox-cta">Get Started</a>
+                            <span class="gfbox-price">$00/mo</span>
+                        </div>
+                    </div>
+                    <div class="gridflex-box"
+                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://lakelandhillsymca.com/wp-content/uploads/sites/18/2024/10/After-School-Childcare-at-the-Y-1024x683.jpg)">
+                        <div class="gfbox-content">
+                            <h3>Box 3</h3>
+                            <span class="gfbox-expand">Details</span>
+                            <div class="gfbox-desc">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
+                                numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
+                                quo.
+                            </div>
+            
+                            <a href="#" class="gfbox-cta">Get Started</a>
+                            <span class="gfbox-price">$00/mo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gridflex-col">
+                    <div class="gridflex-box"
+                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://lakelandhillsymca.com/wp-content/uploads/sites/18/2024/10/Health-and-Wellness-at-the-Y-Box-2.jpg)">
+                        <div class="gfbox-content">
+                            <h3>Box 4</h3>
+                            <span class="gfbox-expand">Details</span>
+                            <div class="gfbox-desc">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
+                                numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
+                                quo.
+                            </div>
+            
+                            <a href="#" class="gfbox-cta">Get Started</a>
+                            <span class="gfbox-price">$00/mo</span>
+                        </div>
+                    </div>
+                    <div class="gridflex-box"
+                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://lakelandhillsymca.com/wp-content/uploads/sites/18/2024/10/Y-Teen-Membership-1024x684.jpg)">
+                        <div class="gfbox-content">
+                            <h3>Box 5</h3>
+                            <span class="gfbox-expand">Details</span>
+                            <div class="gfbox-desc">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
+                                numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
+                                quo.
+                            </div>
+            
+                            <a href="#" class="gfbox-cta">Get Started</a>
+                            <span class="gfbox-price">$00/mo</span>
+                        </div>
+                    </div>
+                    <div class="gridflex-box"
+                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.25) 100%), url(https://lakelandhillsymca.com/wp-content/uploads/sites/18/2024/10/Older-Adult-Membership-1024x684.jpg)">
+                        <div class="gfbox-content">
+                            <h3>Box 6</h3>
+                            <span class="gfbox-expand">Details</span>
+                            <div class="gfbox-desc">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium porro at enim quasi. Tenetur
+                                numquam praesentium corporis ex ut officia nam vel molestiae autem. Quaerat incidunt error neque rem
+                                quo.
+                            </div>
+            
+                            <a href="#" class="gfbox-cta">Get Started</a>
+                            <span class="gfbox-price">$00/mo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const gfboxes = document.querySelectorAll('.gridflex-box');
+
+                gfboxes.forEach((gfbox, index) => {
+                    const boxTrigger = gfbox.querySelector('.gfbox-expand');
+
+                    boxTrigger.addEventListener('click', (b) => {
+                        b.stopPropagation();
+
+                        let boxParent = b.target.parentNode.parentNode;
+                        if(boxParent.classList.contains('active')) {
+                            boxParent.classList.remove('active');
+                        } else {
+                            gfboxes.forEach((gfbox) => gfbox.classList.remove('active'));
+                            boxParent.classList.toggle('active');
+                        }
+                    })
+
+                    gfbox.addEventListener('click', (mb) => {
+                        gfbox.classList.remove('active');
+                    })
+
+                    let gfcta = gfbox.querySelector('.gfbox-cta');
+                    gfcta.addEventListener('click', (c) => {
+                        c.stopPropagation();
+                    })
+                })
+            });
+        </script>
+    </body>
+</html>
