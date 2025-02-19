@@ -1,0 +1,620 @@
+<html>
+  <head>
+    <style>
+      .main-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 1200px;
+        justify-self: center;
+      }
+      .area-gallery-slider-section {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        padding: 0;
+      }
+      .area-gallery-sliders-wrap {
+        position: relative;
+        width: 50%;
+        height: 100%;
+      }
+      .area-gallery-sliders {
+        width: 100%;
+        /*height: 80%;*/
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+      }
+      .area-gallery-wrap {
+        position: absolute;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+      .area-gallery-wrap.active {
+        opacity: 1;
+        z-index: 1;
+      }
+      .area-gallery-descriptions-wrap {
+        width: 50%;
+        padding: 24px 0 24px 48px;
+      }
+      .media-slider {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+      }
+      .media-slider-slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        height: 100%;
+        border-radius: 16px;
+      }
+      .media-slider-slide {
+        min-width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .media-slider-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 16px;
+      }
+      .video-slide-cover {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+        background-color: rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+      }
+      .video-slide-cover .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 64px;
+        height: 64px;
+        background: url(https://www.svgrepo.com/show/140516/play-button.svg) no-repeat
+          center center;
+        background-size: contain;
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(248deg) brightness(107%) contrast(101%);
+        opacity: .75;
+      }
+      .video-slide iframe {
+        width: 100%;
+        border-radius: 16px;
+        height: 100%;
+        object-fit: cover;
+        aspect-ratio: 16/9;
+        background: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.2) 0%,
+            rgba(0, 0, 0, 0.2) 100%
+          ),
+          url(<path-to-image>) lightgray 50% / cover no-repeat,
+          var(--color-hex-neutral-100, #e8e8e8);
+      
+        display: none;
+      }
+      .media-slider-pagination {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+      }
+      .media-slider-dot {
+        height: 15px;
+        width: 15px;
+        margin: 0 5px;
+        border-radius: 50%;
+        border: 2px solid white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        background-color: transparent;
+      }
+      .media-slider-dot.active {
+        background-color: white;
+      }
+      
+      @media (max-width: 640px) {
+        .simple-slider-wrap .media-slider {
+          max-height: 480px;
+        }
+      }
+      .area-gallery-slider-section {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        padding: 0;
+      }
+      .area-gallery-sliders-wrap {
+        position: relative;
+        width: 50%;
+        height: 100%;
+      }
+      .area-gallery-sliders {
+        width: 100%;
+        height: 80%;
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+      }
+      .area-gallery-wrap {
+        position: absolute;
+        display: flex;
+        transition: opacity 0.5s ease-in-out;
+        height: 100%;
+        border-radius: 16px;
+        opacity: 0;
+      }
+      .area-gallery-wrap.active {
+        opacity: 1;
+        z-index: 1;
+      }
+      .area-gallery-thumbs {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+        gap: 5px;
+        border-radius: 16px;
+        overflow: hidden;
+        margin-top: 1.5rem;
+      }
+      .area-gallery-thumb {
+        width: 100%;
+        display: flex;
+        align-self: stretch;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        transition: all 0.5s ease-in-out;
+        background-position: center;
+        background-size: cover;
+        background-blend-mode: multiply;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0.5;
+        cursor: pointer;
+      }
+      .area-gallery-thumb.active {
+        background-blend-mode: initial;
+        opacity: 1;
+      }
+      .area-gallery-thumb-title {
+        font-size: 1.75rem;
+        color: #fff;
+        text-shadow: 0 0 10px #000;
+        padding: 30px;
+        display: block;
+        width: 100%;
+      }
+      /** GALLERY DESCRIPTION STYLE **/
+      .area-gallery-descriptions-wrap {
+        width: 50%;
+        padding: 24px 0 24px 48px;
+      }
+      .area-gallery-section-title {
+        margin-bottom: 1rem;
+      }
+      .area-gallery-descriptions {
+        width: 100%;
+        height: 100%;
+        margin-bottom: 1rem;
+        display: flex;
+        overflow: hidden;
+        transition: transform 0.5s ease-in-out;
+      }
+      .area-gallery-description {
+        min-width: 100%;
+        height: 100%;
+        transition: opacity 0.5s ease-in-out;
+        border-radius: 16px;
+        overflow: hidden;
+        opacity: 0;
+      }
+      .area-gallery-description.active {
+        opacity: 1;
+      }
+      .area-gallery-description p {
+        margin: 0 0 20px;
+        font-size: 1.15em;
+      }
+      .area-gallery-description p:last-child {
+        margin-bottom: 0;
+      }
+      .area-gallery-slider-section .area-gallery-descriptions-wrap .area-gallery-btn {
+        font-weight: 500;
+        text-transform: capitalize;
+        color: #fff !important;
+        padding: 12px;
+        border-radius: 24px;
+        border: 2px solid #0060af;
+        background-color: #0060af;
+        min-width: 257px;
+        display: inline-block;
+        line-height: 1;
+        text-align: center;
+      }
+      .area-gallery-slider-section
+        .area-gallery-descriptions-wrap
+        .area-gallery-btn:hover {
+        background-color: #fff;
+        color: #0060af !important;
+      }
+      .area-gallery-slider-section.slider-reverse-col {
+        flex-direction: row-reverse;
+      }
+      .area-gallery-slider-section.slider-reverse-col
+        .area-gallery-descriptions-wrap {
+        width: 50%;
+        padding: 24px 48px 24px 0;
+      }
+      
+      @media screen and (max-width: 640px) {
+        .area-gallery-slider-section {
+          margin-top: 30px;
+          margin-bottom: 30px;
+        }
+        .area-gallery-sliders-wrap,
+        .area-gallery-descriptions-wrap {
+          width: 100% !important;
+        }
+        .area-gallery-sliders-wrap {
+          height: 50vh;
+          margin-bottom: 3rem;
+        }
+        .area-gallery-descriptions-wrap {
+          padding: 24px 0 !important;
+        }
+        .area-gallery-slider-section.slider-reverse-col {
+          flex-direction: row;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="area-gallery-slider-section">
+    
+        <!-- GALLERIES -->
+        <div class="area-gallery-sliders-wrap">
+          <div class="area-gallery-sliders">
+    
+            <!-- start gallery 1 -->
+            <div class="area-gallery-wrap">
+              <div class="media-slider">
+                <div class="media-slider-slides">
+                  <!-- youtube video slide -->
+                  <div class="media-slider-slide video-slide">
+                    <div class="video-slide-cover" style="background-image: url('https://i3.ytimg.com/vi/KB_7X3iIHQ4/maxresdefault.jpg');" data-video="https://www.youtube.com/embed/KB_7X3iIHQ4?controls=1&modestbranding=1&rel=0&autoplay=1">
+                      <div class="play-button"></div>
+                    </div>
+    
+                    <iframe id="slide-video" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:none; width: 100%; height: 100%; border-radius: 8px; background: #000"></iframe>
+                  </div>
+    
+                  <!-- vimeo video slide -->
+                  <div class="media-slider-slide video-slide">
+                    <div class="video-slide-cover" style="background-image: url('https://i.vimeocdn.com/video/1948760085-cb05bbf87b9d16fba07c98413bc1f9334746585e6851e0045afb4a0f6dd08930-d_295x166');" data-video="https://player.vimeo.com/video/1026574863?dnt=1&fullscreen=1&autoplay=1&responsive=1&badge=0">
+                      <div class="play-button"></div>
+                    </div>
+    
+                    <iframe id="slide-video" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:none; width: 100%; height: 100%; border-radius: 8px; background: #000"></iframe>
+                  </div>
+    
+                  <!-- image slide -->
+                  <div class="media-slider-slide">
+                    <img class="slide-image" src="https://as2.ftcdn.net/v2/jpg/02/94/23/31/1000_F_294233191_p4fKr6EMXeejkKLOw31BuNsIaGEx8E9o.jpg" alt="butterfly on flower" />
+                  </div>
+                </div>
+                <div class="media-slider-pagination"></div>
+              </div>
+            </div>
+            <!-- end gallery 1 -->
+    
+            <!-- start gallery 2 -->
+            <div class="area-gallery-wrap">
+              <div class="media-slider">
+                <div class="media-slider-slides">
+    
+                  <!-- image slide -->
+                  <div class="media-slider-slide">
+                    <img class="slide-image" src="https://as1.ftcdn.net/v2/jpg/02/93/07/78/1000_F_293077837_sRzY8Vg33BA2yA98x35wtszTeXETIvj0.jpg" alt="Monarch butterflies in autumn blooming asters." />
+                  </div>
+    
+                  <!-- vimeo video slide -->
+                  <div class="media-slider-slide video-slide">
+                    <div class="video-slide-cover" style="background-image: url('https://i.vimeocdn.com/video/1948760085-cb05bbf87b9d16fba07c98413bc1f9334746585e6851e0045afb4a0f6dd08930-d_295x166');" data-video="https://player.vimeo.com/video/1026574863?dnt=1&fullscreen=1&autoplay=1&responsive=1&badge=0">
+                      <div class="play-button"></div>
+                    </div>
+    
+                    <iframe id="slide-video" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:none; width: 100%; height: 100%; border-radius: 8px; background: #000"></iframe>
+                  </div>
+    
+                  <!-- image slide -->
+                  <div class="media-slider-slide">
+                    <img class="slide-image" src="https://as2.ftcdn.net/v2/jpg/00/50/42/33/1000_F_50423321_xxIAnBEPF5GmD1ZKtQvGMXZANRMxn3ta.jpg" alt="Monarch butterflies in autumn blooming asters." />
+                  </div>
+                </div>
+                <div class="media-slider-pagination"></div>
+              </div>
+            </div>
+            <!-- end gallery 2 -->
+    
+          </div>
+    
+          <div class="area-gallery-thumbs">
+            <!-- gallery thumbnail 1 -->
+            <div class="area-gallery-thumb" style="background-image: url('https://as2.ftcdn.net/v2/jpg/02/94/23/31/1000_F_294233191_p4fKr6EMXeejkKLOw31BuNsIaGEx8E9o.jpg');">
+              <span class="area-gallery-thumb-title">Gallery 1</span>
+            </div>
+    
+            <!-- gallery thumbnail 2 -->
+            <div class="area-gallery-thumb" style="background-image: url('https://as1.ftcdn.net/v2/jpg/02/93/07/78/1000_F_293077837_sRzY8Vg33BA2yA98x35wtszTeXETIvj0.jpg');">
+              <span class="area-gallery-thumb-title">Gallery 2</span>
+            </div>
+          </div>
+        </div>
+        <!-- GALLERIES -->
+    
+        <!-- DESCRIPTIONS -->
+        <div class="area-gallery-descriptions-wrap">
+          <h2 class="area-gallery-section-title">Gallery Descriptions</h2>
+          <div class="area-gallery-descriptions">
+            <div class="area-gallery-description">
+              <h3>Gallery 1</h3>
+              <p>Lorem ipsum dolor est</p>
+              <a class="area-gallery-btn" href="#">Learn More</a>
+            </div>
+            <div class="area-gallery-description">
+              <h3>Gallery 2</h3>
+              <p>Lorem ipsum dolor est</p>
+              <a class="area-gallery-btn" href="#">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <!-- DESCRIPTIONS -->
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+
+        const sliders = document.querySelectorAll(".media-slider");
+    
+        let sliderClass, sliderIndex;
+    
+        sliders.forEach((slider, index) => {
+            //add class to each slider.
+            sliderIndex = index;
+            slider.classList.add(`slide-${sliderIndex}`);
+            slider.setAttribute('slider-index', sliderIndex);
+    
+            //slider components
+            const slides = slider.querySelectorAll('.media-slider-slide');
+    
+            const dotsContainer = slider.querySelector('.media-slider-pagination');
+            dotsContainer.classList.add('slide-pagination-' + index);
+            
+            slides.forEach((slide, index) => {
+                if(slides.length > 1) {
+    				const dot = document.createElement("span");
+    				dot.classList.add("media-slider-dot");
+    				dot.addEventListener("click", (e) => showSlide(e.target.parentNode.parentNode.getAttribute('slider-index'), index));
+    				dotsContainer.appendChild(dot);
+    			}
+    
+                    
+                /** video slide  **/
+                if(slide.classList.contains('video-slide')) {
+                    const slideVideo = slide.querySelector('#slide-video')
+                    const videoCover = slide.querySelector('.video-slide-cover');
+    
+                    //let initialVideoSrc = addYouTubeParams(videoCover.getAttribute("data-video"));
+                    let initialVideoSrc = videoCover.getAttribute("data-video");
+    
+                    // Play button functionality
+                    videoCover.addEventListener("click", function() {
+                        const videoSrc = initialVideoSrc;
+                        showVideo(videoSrc);
+                        videoCover.style.display = "none";
+                    });
+                    
+                    function addYouTubeParams(url) {
+                        const params = "?controls=1&modestbranding=1&rel=0&autoplay=1";
+                        if (url.includes("youtube.com/embed/")) {
+                            return url + params;
+                        }
+                        return url;
+                    }
+                    
+                    function showVideo(videoSrc) {
+                        videoCover.style.display = "none";
+                        slideVideo.style.display = "block";
+                        slideVideo.src = videoSrc;
+                    }
+                }
+            });
+    
+            let currentSlide = 0;
+            let firstX, distX;
+            let firstTouchX, distTouchX;
+    
+            document.querySelector(`[slider-index='${sliderIndex}']`).addEventListener("mousedown", handleSwipeStart, false);
+            document.querySelector(`[slider-index='${sliderIndex}']`).addEventListener("mousemove", handleSwipeMove, false);
+            document.querySelector(`[slider-index='${sliderIndex}']`).addEventListener("mouseup", handleSwipeEnd, false);
+    
+            document.querySelector(`[slider-index='${sliderIndex}']`).addEventListener("touchstart", handleSwipeStart, false);
+            document.querySelector(`[slider-index='${sliderIndex}']`).addEventListener("touchmove", handleSwipeMove, false);
+            document.querySelector(`[slider-index='${sliderIndex}']`).addEventListener("touchend", handleSwipeEnd, false);
+    
+            showSlide(sliderIndex, 0); // Show the first slide initially
+    
+        });
+    
+        function showSlide(sliderIndex, index) {
+            const offset = -index * 100;
+            const slidesContainer = document.querySelector(`[slider-index='${sliderIndex}']  .media-slider-slides`);
+            slidesContainer.style.transform = `translateX(${offset}%)`;
+            currentSlide = index;
+            const dots = document.querySelectorAll(`[slider-index='${sliderIndex}'] .media-slider-dot`);
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("active", i === index);
+            });
+    
+            resetVideoSlide();
+        }
+    
+        function handleSwipeStart(event) {
+            event.preventDefault();
+            if (event.type === "mousedown") {
+                firstX = event.clientX;
+            } else if (event.type === "touchstart") {
+                firstTouchX = event.changedTouches[0].clientX;
+            }
+        }
+    
+        function handleSwipeMove(event) {
+            event.preventDefault();
+        }
+    
+        function handleSwipeEnd(event) {
+            distX = 0;
+            distTouchX = 0;
+    
+            if (event.type === "mouseup") {
+                const currentX = event.clientX;
+                distX = currentX - firstX;
+            } else if (event.type === "touchend") {
+                const endTouchX = event.changedTouches[0].clientX;
+                distTouchX = endTouchX - firstTouchX;
+            }
+    
+            if (Math.abs(distX) > 50 || Math.abs(distTouchX) > 50) {
+                if (distX > 0 || distTouchX > 0) {
+                showNextSlide(-1);
+                } else {
+                showNextSlide(1);
+                }
+            }
+        }
+    
+        function showNextSlide(direction) {
+            sliderIndex = event.target.parentNode.parentNode.parentNode.getAttribute('slider-index');
+            console.log(sliderIndex);
+            const slides = document.querySelectorAll(`[slider-index='${sliderIndex}'] .media-slider-slide`);
+    
+            let newIndex = currentSlide + direction;
+            if (newIndex < 0) {
+                newIndex = slides.length - 1;
+            } else if (newIndex >= slides.length) {
+                newIndex = 0;
+            }
+            showSlide(sliderIndex, newIndex);
+        }
+        
+        function resetVideoSlide() {
+            const videoSlides = document.querySelectorAll('.video-slide');
+    
+            videoSlides.forEach((videoSlide) => {
+                const videoCover = videoSlide.querySelector('.video-slide-cover');
+                const slideVideo = videoSlide.querySelector('#slide-video');
+                
+                videoCover.style.display = "block";
+                slideVideo.style.display = "none";
+                slideVideo.src = '';
+            })
+        }
+    
+        const galleries = document.querySelectorAll('.area-gallery-slider-section');
+        let galleryDivIndex;
+    
+        galleries.forEach((gallery, index) => {
+            galleryDivIndex = index;
+            gallery.classList.add(`gallery-slider-${galleryDivIndex}`);
+            gallery.setAttribute('gallery-section-index', galleryDivIndex);
+    
+            const gallerySliders = gallery.querySelectorAll('.area-gallery-wrap');
+            gallerySliders.forEach((gallerySlider, index) => {
+                index == 0 ? gallerySlider.classList.add('active') : '';
+    
+                let galleryIndex = index;
+                gallerySlider.setAttribute('gallery-slider-index', galleryIndex);
+            });
+    
+            const thumbNavs = gallery.querySelectorAll('.area-gallery-thumb');
+            thumbNavs.forEach((thumbNav, index) => {
+                index == 0 ? thumbNav.classList.add('active') : '';
+    
+                thumbNav.addEventListener('click', (gs) => {
+                    let targetGallerySec = gs.target.parentNode.parentNode.parentNode.parentNode.getAttribute('gallery-section-index');
+    
+                    showGallery(targetGallerySec, index);
+                    thumbNav.classList.add('active');
+    
+                    showDescription(targetGallerySec, index);
+                });
+            });
+    
+            function showGallery(galleryDivIndex, index) {
+                const galleryTargetSection = document.querySelector(`.area-gallery-slider-section.gallery-slider-${galleryDivIndex}`);
+    
+                const gallerySliders = galleryTargetSection.querySelectorAll('.area-gallery-wrap');
+                gallerySliders.forEach((gallerySlide) => {gallerySlide.classList.remove('active')});
+    
+                const thumbNavs = galleryTargetSection.querySelectorAll('.area-gallery-thumb');
+                thumbNavs.forEach((thumbNav) => {thumbNav.classList.remove('active')});
+                
+                let activeGallery = galleryTargetSection.querySelector(`[gallery-slider-index='${index}']`);
+                activeGallery.classList.add('active');
+            }
+    
+            
+            const descDivs = gallery.querySelectorAll('.area-gallery-description');
+    
+            descDivs.forEach((desc,index) => {
+                index == 0 ? desc.classList.add('active') : '';
+                desc.setAttribute('desc-index', index);
+            })
+    
+            function showDescription (galleryDivIndex, index) {
+                const galleryTargetSection = document.querySelector(`.area-gallery-slider-section.gallery-slider-${galleryDivIndex}`);
+    
+                const descDivs = galleryTargetSection.querySelectorAll('.area-gallery-description');
+                descDivs.forEach((desc) => { desc.classList.remove('active') });
+    
+                let activeDesc = galleryTargetSection.querySelector(`[desc-index='${index}']`);
+                activeDesc.classList.add('active');
+                
+                const offset = -index * 100;
+                const descContainer = galleryTargetSection.querySelector(`[desc-index='${index}']`);
+                descContainer.style.transform = `translateX(${offset}%)`;
+            }
+        })
+    });
+    </script>
+  </body>
+</html>
